@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/E2_DYNAMICTEXT/E2_DynamicText.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
