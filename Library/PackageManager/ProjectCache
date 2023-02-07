@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638114052763723271
-    m_Hash: 1687866818
+      ticks: 638114062122512065
+    m_Hash: 3707384982
   m_LockFileStatus:
     m_FilePath: C:/Users/easto/Documents/UnityDemo_Spring2023/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638114052865272001
-    m_Hash: 750897411
+      ticks: 638114062122512065
+    m_Hash: 3576477490
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
