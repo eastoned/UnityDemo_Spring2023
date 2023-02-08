@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/E2_DYNAMICTEXT/E2_DynamicText.unity
+    guid: 5b34d348ad0c293408b4987414c0e00a
   m_configObjects: {}
