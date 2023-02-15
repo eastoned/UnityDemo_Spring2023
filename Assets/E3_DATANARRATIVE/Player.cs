@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         //if cube blue then
         return true;
         //else
-        return false;
+        //return false;
     }
     
 }
