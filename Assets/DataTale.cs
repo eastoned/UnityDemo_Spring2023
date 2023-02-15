@@ -38,5 +38,5 @@ public class Pedestrian{
 
 [System.Serializable]
 public class Spy : Pedestrian{
-    public int danger = 1;
+    public int suspicion = 1;
 }
