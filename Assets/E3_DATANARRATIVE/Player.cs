@@ -16,11 +16,6 @@ public class Player : MonoBehaviour
     public Vector3 Direction;
     public float timer;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -33,13 +28,6 @@ public class Player : MonoBehaviour
         timer += Time.deltaTime * speed;
         transform.position = amount*Vector3.up * Mathf.Sin(timer);
         
-    }
-
-    bool IsCubeEnabled(){
-        //if cube blue then
-        return true;
-        //else
-        return false;
     }
     
 }
