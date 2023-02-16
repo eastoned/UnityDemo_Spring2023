@@ -11,7 +11,7 @@ When posting this assignment to itch.io, please include the .CS file in your upl
 
 public class DataTale : MonoBehaviour
 {
-
+    
     public string words;
     public int number;
     public Pedestrian _person;
