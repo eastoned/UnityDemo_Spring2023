@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public static event Action<State> OnGameStateChanged;
 
+    
+    
     public static GameManager Instance{
         get{
             if(!_instance){
@@ -25,6 +27,10 @@ public class GameManager : MonoBehaviour
             }
             return _instance;
         }
+    }
+
+    void Start(){
+        UpdateGameState(State.Push);
     }
     
     public enum State{
@@ -50,6 +56,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake(){
         _instance = this;
+
     }
 
     [ContextMenu("Test Event")]
@@ -61,13 +68,13 @@ public class GameManager : MonoBehaviour
 
     public void CreateObject(string obj){
         GameObject newObj = Instantiate(Resources.Load(obj, typeof(GameObject))) as GameObject;
+        newObj.name = obj;
         activeAgents.Add(newObj);
         OnAgentCreated?.Invoke();
     }
 
     public void Clear(){
         foreach(GameObject obj in activeAgents){
-            //activeAgents.Remove(obj);
             Destroy(obj);
         }
         activeAgents.Clear();

@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _text;
 
+    public Agent currentAgent;
+
     void Start(){
         cam = GetComponent<Camera>();
     }
@@ -24,20 +26,29 @@ public class InputManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0)){
             RaycastHit hit;
-            if(Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 100f)){
+            if(Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 100f, ~LayerMask.NameToLayer("Agent"))){
+                Debug.Log("Hitting:" + hit.transform.name);
+                currentAgent = hit.transform.gameObject.GetComponent<Agent>();
                 switch(GameManager.Instance.GameState){
                     case GameManager.State.Delete:
+                        //hit.transform.gameObject.GetComponent<Agent>().Die();
+                        currentAgent.Die();
                         Debug.Log("Destroy this: " + hit.transform.name);
                     break;
                     case GameManager.State.Duplicate:
+                        ///hit.transform.gameObject.GetComponent<Agent>().Spawn();
+                        currentAgent.Spawn();
                         Debug.Log("Create new: " + hit.transform.name);
                     break;
                     case GameManager.State.Push:
+                        currentAgent.Push(Random.onUnitSphere, Random.Range(2f, 10f));
+                        //hit.transform.gameObject.GetComponent<Agent>().Push(Random.onUnitSphere, Random.Range(2f, 10f));
                         Debug.Log("Push: " + hit.transform.name);
                     break;
                     default:
                     break;
                 }
+                currentAgent = null;
             }
         }
     }
