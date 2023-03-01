@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8462243783877848296}
   - component: {fileID: 8462243783877848212}
   - component: {fileID: 8462243783877848215}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mouse
   m_TagString: Mouse
   m_Icon: {fileID: 0}
@@ -113,7 +113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalSpeed: 0
   runSpeed: 0
-  detector: {fileID: 0}
   hungerAmount: 0
   inDanger: 0
 --- !u!54 &8462243783877848215

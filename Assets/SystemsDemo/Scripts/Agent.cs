@@ -15,7 +15,7 @@ public class Agent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class Agent : MonoBehaviour
         rb.AddForce(direction * force, ForceMode.Impulse);
     }
 
-    void Spawn(){
+    public void Spawn(){
         GameManager.Instance.CreateObject(this.gameObject.name);
     }
 
