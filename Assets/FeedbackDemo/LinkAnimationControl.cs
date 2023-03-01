@@ -8,6 +8,10 @@ public class LinkAnimationControl : MonoBehaviour
     private Animator linkAnim;
 
     [SerializeField] private Slider health;
+    [SerializeField] private GameObject splatter;
+    [SerializeField] private AudioSource yelp;
+
+    [SerializeField] private CameraShake shake;
 
     public float linkHealth = 50f;
 
@@ -25,7 +29,7 @@ public class LinkAnimationControl : MonoBehaviour
     void TriggerAnimation(string tag){
         Debug.Log(tag);
         
-        
+        yelp.PlayOneShot(yelp.clip);
 
         if(linkHealth >= 0){
             linkAnim.SetTrigger(tag);
