@@ -1,4 +1,4 @@
-Shader "Unlit/CelShading"
+Shader "Unlit/CelShadingCullOff"
 {
     Properties
     {
@@ -10,6 +10,8 @@ Shader "Unlit/CelShading"
         Tags { "RenderType"="Opaque" "LightMode" = "ForwardBase"
 	"PassFlags" = "OnlyDirectional" }
         LOD 100
+        Cull Off
+        ZTest LEqual
 
         Pass
         {
@@ -46,10 +48,7 @@ Shader "Unlit/CelShading"
             v2f vert (appdata v)
             {
                 v2f o;
-                //v.vertex.x += sin(v.vertex.y + _Time.y) * 0.1f;
-                
                 o.pos = UnityObjectToClipPos(v.vertex);
-                
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);

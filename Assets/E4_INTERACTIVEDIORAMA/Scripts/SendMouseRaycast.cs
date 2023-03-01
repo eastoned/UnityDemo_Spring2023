@@ -5,8 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class SendMouseRaycast : MonoBehaviour
 {
-    [SerializeField] private GameObject smallCylinder;
+    //[SerializeField] private GameObject smallCylinder;
     private Camera thisCamera;
+
+    public delegate void ClickLink(string tag);
+    public static event ClickLink LinkClicked;
 
     private void Start() {
         thisCamera = GetComponent<Camera>();
@@ -14,15 +17,14 @@ public class SendMouseRaycast : MonoBehaviour
 
     private void Update(){
         
-        if(Input.GetMouseButtonDown(1)){
+        if(Input.GetMouseButtonDown(0)){
 
             Ray ray = thisCamera.ScreenPointToRay(Input.mousePosition);
-            //Debug.Log(Input.mousePosition);
+            
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, 500f)){
-                Debug.Log(hit.transform.gameObject.name);
-                Instantiate(smallCylinder, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
-                hit.transform.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Random.ColorHSV());
+                Debug.Log(hit.transform.tag);
+                LinkClicked(hit.transform.tag);
             }
         }
     }

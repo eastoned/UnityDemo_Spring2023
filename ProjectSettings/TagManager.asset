@@ -8,6 +8,8 @@ TagManager:
   - Cat
   - Cheese
   - Environment
+  - Head
+  - Stomach
   layers:
   - Default
   - TransparentFX
