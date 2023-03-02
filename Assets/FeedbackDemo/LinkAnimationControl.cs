@@ -30,15 +30,16 @@ public class LinkAnimationControl : MonoBehaviour
         Debug.Log(tag);
         
         yelp.PlayOneShot(yelp.clip);
-
+        StartCoroutine(shake.Shake(0.2f, .1f));
         if(linkHealth >= 0){
+            
             linkAnim.SetTrigger(tag);
             UpdateHealthUI(linkHealth - Random.Range(5f, 15f));
         }else{
             linkAnim.SetTrigger("Knocked");
             UpdateHealthUI(50f);
         }
-        
+        splatter.SetActive(true);
     }
 
     void UpdateHealthUI(float newHealth){

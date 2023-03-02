@@ -30,16 +30,12 @@ public class Player : MonoBehaviour
 
     void OscillateCube(){
         
+        
         timer += Time.deltaTime * speed;
-        transform.position = amount*Vector3.up * Mathf.Sin(timer);
+        transform.position = amount * new Vector3(0, 0, 1) * Mathf.Sin(timer);
         
     }
 
-    bool IsCubeEnabled(){
-        //if cube blue then
-        return true;
-        //else
-        //return false;
-    }
+ 
     
 }
