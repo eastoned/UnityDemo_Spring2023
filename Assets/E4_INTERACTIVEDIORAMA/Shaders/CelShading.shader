@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 Shader "Unlit/CelShading"
 {
     Properties
@@ -36,23 +38,27 @@ Shader "Unlit/CelShading"
                 UNITY_FOG_COORDS(1)
                 float2 uv : TEXCOORD0;
                 float3 worldNormal : NORMAL;
+                float3 worldPos : TEXCOORD1;
                 SHADOW_COORDS(2)
             };
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float4 _AmbientColor;
+            float4 _SpherePos;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 //v.vertex.x += sin(v.vertex.y + _Time.y) * 0.1f;
-                
-                o.pos = UnityObjectToClipPos(v.vertex);
+                o.worldPos = mul (unity_ObjectToWorld, v.vertex).xyz;
                 
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
+                float strength = smoothstep(0, 1, 0.5-distance(o.worldPos, _SpherePos));
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
+                v.vertex.xyz += o.worldNormal * (strength * 0.001);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 TRANSFER_SHADOW(o)
                 return o;
             }
@@ -67,7 +73,9 @@ Shader "Unlit/CelShading"
                 float lightIntensity = NdotL > 0 ? 1 : 0;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
+                //return fixed4(smoothstep(0, 1, 0.5-distance(i.worldPos, _SpherePos)).xxx, 1);
                 return col * (_AmbientColor + lightIntensity);
+
             }
             ENDCG
         }

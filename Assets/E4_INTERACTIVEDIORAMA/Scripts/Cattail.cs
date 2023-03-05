@@ -10,10 +10,33 @@ public class Cattail : MonoBehaviour
     private bool flipped = false;
     public float lifetime;
     // Start is called before the first frame update
+    public float SetWidth{
+        get {return stalk.widthMultiplier;}
+        set {
+            if(!stalk)
+                stalk = GetComponent<LineRenderer>();
+
+            if(value < 0)
+                stalk.widthMultiplier = 0;
+            else
+                stalk.widthMultiplier = value;
+        }
+    }
+
+    public float SetLifetime{
+        set {
+            if(value < 0)
+                value = 0;
+            else{
+                lifetime = value;
+            }
+        }
+    }
+
     void Start()
     {
         stalk = GetComponent<LineRenderer>();
-        lifetime = Random.Range(5f, 5f);
+        lifetime = Random.Range(1f, 2f);
         originPoint = transform.position.x * transform.position.z;
         StartCoroutine(Grow());
     }
@@ -38,5 +61,11 @@ public class Cattail : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         stalk.Simplify(.005f);
+        //stalk.SetPositions(SetToLocalPosition(stalk.GetPositions()));
+    }
+
+    void SetToLocalPosition(Vector3[] points){
+
+        stalk.useWorldSpace = false;
     }
 }

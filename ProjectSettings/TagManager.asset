@@ -10,6 +10,7 @@ TagManager:
   - Environment
   - Head
   - Stomach
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - UI
   - UI2
   - Agent
-  - 
+  - FinalRender
   - 
   - 
   - 
