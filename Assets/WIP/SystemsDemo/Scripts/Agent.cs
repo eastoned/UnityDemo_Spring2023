@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Agent : MonoBehaviour
+public class Agent : MonoBehaviour, IPushable
 {
     public float normalSpeed, runSpeed;
     private Rigidbody rb;

@@ -49,6 +49,10 @@ public class InputManager : MonoBehaviour
                     break;
                 }
                 currentAgent = null;
+            }else if(Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 100f, ~LayerMask.NameToLayer("Default"))){
+                if(GameManager.Instance.GameState == GameManager.State.Spawn){
+                    
+                }
             }
         }
     }

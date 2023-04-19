@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Editor.meta
 guid: 833e12f1d550f2c4b96eb6fa3a5ea199
+========
+guid: f8df40ac6c3d8a5458980a0a0f75f7ee
+>>>>>>>> 57c28d654fa2c0ed359b571eaecd5dd6b88dc3fe:Assets/Polybrush Data.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public State GameState;
 
+    public Spawnable SpawnState;
+
     public List<GameObject> activeAgents = new List<GameObject>();
 
     public static event Action OnAgentDestroyed;
@@ -36,7 +38,14 @@ public class GameManager : MonoBehaviour
     public enum State{
         Duplicate,
         Delete,
-        Push
+        Push,
+        Spawn
+    }
+
+    public enum Spawnable{
+        Cheese,
+        Mouse,
+        Cat
     }
 
     public void UpdateGameState(State gameState){

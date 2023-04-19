@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/LightingDemo.meta
 guid: 7ac9d9524c850d340b5f263445a451f7
 folderAsset: yes
+========
+guid: 2c54c7ca9cbe9574c8e059e6c20ae9c3
+>>>>>>>> 57c28d654fa2c0ed359b571eaecd5dd6b88dc3fe:Assets/Compute.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
