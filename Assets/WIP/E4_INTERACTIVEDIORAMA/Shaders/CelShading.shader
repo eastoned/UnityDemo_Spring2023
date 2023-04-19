@@ -7,6 +7,8 @@ Shader "Unlit/CelShading"
         _MainTex ("Texture", 2D) = "white" {}
         _BaseColor ("Base Color", Color) = (1,1,1,1)
         _AmbientColor ("Shadow Color", Color) = (0,0,0,0)
+
+        _NoiseTex("Noise", 2D) = "white" {}
     }
     SubShader
     {
@@ -47,6 +49,7 @@ Shader "Unlit/CelShading"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            sampler2D _NoiseTex;
             float4 _BaseColor;
             float4 _AmbientColor;
             float4 _SpherePos;
@@ -56,13 +59,16 @@ Shader "Unlit/CelShading"
                 v2f o;
                 //v.vertex.x += sin(v.vertex.y + _Time.y) * 0.1f;
                 o.worldPos = mul (unity_ObjectToWorld, v.vertex).xyz;
+                float noise = tex2Dlod(_NoiseTex, float4(o.worldPos.xz + float2(0, _Time.x/2), o.worldPos.y, 1)).r;
+
                 
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                o.color = v.color;
+                o.color = noise;
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 float strength = smoothstep(0, 1, 0.5-distance(o.worldPos, _SpherePos));
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
-                v.vertex.xyz += o.worldNormal * (strength * 0.001);
+                //v.vertex.xyz += o.worldNormal * (strength * 0.001);
+                v.vertex.y -= noise/20;
                 //v.vertex.xyz += v.color.r * _SinTime.w;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 TRANSFER_SHADOW(o)
@@ -79,6 +85,7 @@ Shader "Unlit/CelShading"
                 float lightIntensity = NdotL > 0 ? 1 : 0;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
+                
                 //return float4(i.color, 1);
                 //return fixed4(smoothstep(0, 1, 0.5-distance(i.worldPos, _SpherePos)).xxx, 1);
                 return col * (_AmbientColor + lightIntensity);

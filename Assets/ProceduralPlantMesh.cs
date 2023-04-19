@@ -24,6 +24,8 @@ public class ProceduralPlantMesh : MonoBehaviour
 
     [Range(1f, 18f)]
     public float size;
+
+    public float minSize, maxSize;
     
     public AnimationCurve sizeCurve;
 
@@ -110,7 +112,7 @@ public class ProceduralPlantMesh : MonoBehaviour
     }
 
     public void Randomize(){
-        size = Random.Range(1f, 18f);
+        size = Random.Range(minSize, maxSize);
         width = Random.Range(.1f, 4f);
         height = Random.Range(1f, 18f);
         Generate();
@@ -129,36 +131,11 @@ public class ProceduralPlantMesh : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected() {
-
-        
-
-    }
 }
 
 [CustomEditor(typeof(ProceduralPlantMesh))]
 public class PlantEditor : Editor
 {
-    // Custom in-scene UI for when ExampleScript
-    // component is selected.
-    public void OnSceneGUI()
-    {
-        ProceduralPlantMesh handleExample = (ProceduralPlantMesh)target;
-
-        if (handleExample == null)
-        {
-            return;
-        }
-
-        Handles.BeginGUI();
-        if(GUILayout.Button("Reset Area", GUILayout.Width(100)))
-        {
-            handleExample.width =  12f;
-        }
-        Handles.EndGUI();
-        
-        handleExample.width = Handles.ScaleSlider(handleExample.width, handleExample.transform.position, handleExample.transform.position + handleExample.transform.forward * handleExample.width, handleExample.transform.rotation, 1f, 0f);
-    }
 
     public override void OnInspectorGUI()
     {
@@ -171,6 +148,10 @@ public class PlantEditor : Editor
 
         if(GUILayout.Button("Randomize Parameters")){
             procMesh.Randomize();
+        }
+
+        if(GUILayout.Button("Combine")){
+
         }
     }
 }
