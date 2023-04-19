@@ -41,3 +41,7 @@ public class Agent : MonoBehaviour, IPushable
     }
 
 }
+
+public interface IPushable{
+    
+}
