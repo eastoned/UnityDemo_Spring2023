@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/E2_DYNAMICTEXT/Scenes/E2_DynamicText.unity
     guid: 5a65c55ce00406048b8a8d6a17b19c39
   - enabled: 1
-    path: Assets/E4_INTERACTIVEDIORAMA/Scenes/E4_INTERACTIVEDIORAMA.unity
+    path: Assets/WIP/E4_INTERACTIVEDIORAMA/Scenes/E4_INTERACTIVEDIORAMA.unity
     guid: c001de9893130bf44adcce7ab7e628e6
   m_configObjects: {}
