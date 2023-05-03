@@ -26,5 +26,6 @@ public class SendCollisionState : MonoBehaviour
     void OnCollisionEnter(Collision col){
         Debug.Log(col.gameObject);
         face.material.SetTexture("_MainTex", reactions[Random.Range(0, reactions.Length)]);
+        
     }
 }
