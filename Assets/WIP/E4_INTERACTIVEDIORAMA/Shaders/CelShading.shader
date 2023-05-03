@@ -7,7 +7,7 @@ Shader "Unlit/CelShading"
         _MainTex ("Texture", 2D) = "white" {}
         _BaseColor ("Base Color", Color) = (1,1,1,1)
         _AmbientColor ("Shadow Color", Color) = (0,0,0,0)
-
+        _Amount("Noise Offset Strength", Range(0, 1)) = 0.1
         _NoiseTex("Noise", 2D) = "white" {}
     }
     SubShader
@@ -53,6 +53,7 @@ Shader "Unlit/CelShading"
             float4 _BaseColor;
             float4 _AmbientColor;
             float4 _SpherePos;
+            fixed _Amount;
 
             v2f vert (appdata v)
             {
@@ -68,7 +69,7 @@ Shader "Unlit/CelShading"
                 float strength = smoothstep(0, 1, 0.5-distance(o.worldPos, _SpherePos));
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 //v.vertex.xyz += o.worldNormal * (strength * 0.001);
-                v.vertex.y -= noise/20;
+                v.vertex.y -= (_Amount*noise)/20;
                 //v.vertex.xyz += v.color.r * _SinTime.w;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 TRANSFER_SHADOW(o)
