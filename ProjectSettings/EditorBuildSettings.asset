@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/WIP/E4_INTERACTIVEDIORAMA/Scenes/E4_INTERACTIVEDIORAMA.unity
     guid: c001de9893130bf44adcce7ab7e628e6
+  - enabled: 1
+    path: Assets/Selector.unity
+    guid: 524ad43536c0c1b489a6292700e392ab
   m_configObjects: {}
